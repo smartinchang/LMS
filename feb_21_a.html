@@ -1,0 +1,69 @@
+<html>
+ <head>
+  <title>Hệ thống thi trắc nghiệm</title>
+ </head>
+ <body>
+  <script>
+   var btn_test_value=0;
+   var duration=10;
+   var timer;
+   document.getElementById("lbl_duration").innerHTML="Thời gian làm bài là "+duration+" phút. Bạn hãy bắt đầu làm bài kiểm tra!";
+   function btn_test_click()
+   {
+    if (btn_test_value<4)
+	{
+     btn_test_value++;
+	}
+	if (btn_test_value==1)
+	{
+	 document.getElementById("lbl_duration").innerHTML="Thời gian làm bài còn "+duration+" phút!";
+	 document.getElementById("btn_test").innerHTML="Hoàn thành";
+	 document.getElementById("test_content").style.display="block";
+	 timer=setInterval(duration_check,1000);
+	}
+	else if (btn_test_value==2)
+	{
+	 document.getElementById("lbl_duration").innerHTML="Chúc mừng bạn đã hoàn tất bài kiểm tra!";
+	 document.getElementById("btn_test").innerHTML="Xem kết quả";
+	 document.getElementById("test_content").style.display="none";
+	 clearInterval(timer);
+	}
+	else
+	{
+	 document.getElementById("lbl_duration").innerHTML="Kết quả của bài kiểm tra:";
+	 document.getElementById("btn_test").style.display="none";
+	}
+   }
+   function duration_check()
+   {
+    if (duration>0)
+	{
+     duration--;
+	 document.getElementById("lbl_duration").innerHTML="Thời gian làm bài còn "+duration+" phút!";
+	}
+	else
+	{
+	 document.getElementById("lbl_duration").innerHTML="Đã hết giờ làm bài kiểm tra!";
+	 btn_test_value=2;
+	 document.getElementById("btn_test").innerHTML="Xem kết quả";
+	 document.getElementById("test_content").style.display="none";
+	 clearInterval(timer);
+	}
+   }
+  </script>
+  <h1>Bài kiểm tra</h1>
+  <label id="lbl_duration">Thời gian làm bài là 60 phút!</label>
+  <button id="btn_test" type="button" onclick="btn_test_click();">Bắt đầu</button>
+  <br>
+  <div id="test_content" style="display:none">
+   <p>Python là gì?</p>
+   <form id="test_form">
+    <input type="checkbox" value="1"> <label>Python là ngôn ngữ lập trình cấp cao</label><br>
+    <input type="checkbox" value="2"> <label>Python là ngôn ngữ thông dịch</label><br>
+    <input type="checkbox" value="3"> <label>Python là ngôn ngữ lập trình hướng đối tượng</label><br>
+    <input type="checkbox" value="4"> <label>Tất cả các đáp án đều đúng</label><br><br>
+	<input type="button" value="Chọn">
+   </form>
+  </div>
+ </body>
+</html>

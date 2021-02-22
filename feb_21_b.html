@@ -1,0 +1,30 @@
+<html>
+ <head>
+  <title>Đếm lùi</title>
+ </head>
+ <body>
+  <label id="lbl_duration">Thử nghiệm</label>
+  <label id="lbl_result"></label>
+  <br>
+  <button id="btn_start" type="button" onclick="btn_start_click();">Bắt đầu</button> 
+  <button id="btn_stop" type="button" onclick="btn_stop_click();">Hoàn thành</button> 
+  <script>
+   var duration=10;
+   var timer;
+   function btn_start_click()
+   {
+    timer=setInterval(duration_check,1000);
+   }
+   function btn_stop_click()
+   {
+    document.getElementById("lbl_result").innerHTML="Dừng!";
+	clearInterval(timer);
+   }
+   function duration_check()
+   {
+    duration--;
+	document.getElementById("lbl_duration").innerHTML="Thời gian làm bài còn "+duration+" phút!";
+   }
+  </script>
+ </body>
+</html>
