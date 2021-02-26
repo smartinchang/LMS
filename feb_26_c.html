@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vis Network | Data | Custom Scaling</title>
+
+    <style type="text/css">
+      html,
+      body {
+        font: 10pt arial;
+      }
+      #mynetwork {
+        width: 100%;
+        height: 600px;
+        border: 1px solid lightgray;
+      }
+    </style>
+
+    <script type="text/javascript" src="vis-network.min.js"></script>
+
+    <script type="text/javascript">
+      var nodes = null;
+      var edges = null;
+      var network = null;
+
+      function draw() {
+        // create people.
+        // value corresponds with the age of the person
+        nodes = [
+          { id: 1, value: 30, label: "Giới thiệu", color: "orange"},
+          { id: 2, value: 15, label: "Môi trường phát triển", color: "orange"},
+          { id: 3, value: 15, label: "Cú pháp"},
+          { id: 4, value: 10, label: "Thụt dòng"},
+          { id: 5, value: 10, label: "Ghi chú"},
+          { id: 6, value: 15, label: "Kiểu dữ liệu"},
+          { id: 7, value: 10, label: "Kiểu số"},
+          { id: 8, value: 5, label: "Kiểu số nguyên"},
+          { id: 9, value: 5, label: "Kiểu số thực"},
+          { id: 10, value: 10, label: "Kiểu chuỗi"},
+          { id: 11, value: 10, label: "Kiểu luận lý"},
+          { id: 12, value: 15, label: "Biến"},
+          { id: 13, value: 5, label: "Kiểu chuỗi"},
+          { id: 14, value: 15, label: "Cấu trúc điều khiển"},
+          { id: 15, value: 10, label: "Cấu trúc lựa chọn"},
+          { id: 16, value: 10, label: "Cấu trúc lặp"},
+          { id: 17, value: 5, label: "Cấu trúc Nếu ... Thì ..."},
+          { id: 18, value: 5, label: "Cấu trúc Nếu ... Thì ... Nếu không thì ..."},
+          { id: 19, value: 5, label: "Ghi chú trên một dòng"},
+          { id: 20, value: 5, label: "Ghi chú trên nhiều dòng"},
+          { id: 21, value: 10, label: "Cài đặt"},
+          { id: 22, value: 10, label: "Cách thức sử dụng"},
+          { id: 23, value: 5, label: "Vòng lặp xác định"},
+          { id: 24, value: 5, label: "Vòng lặp không xác định"},
+        ];
+
+        // create connections between people
+        // value corresponds with the amount of contact between two people
+        edges = [
+          { from: 1, to: 2, value: 1, arrows: "to", color:"red"},
+          { from: 1, to: 3, value: 1, arrows: "to", color:"lightgray"},
+          { from: 3, to: 4, value: 1, arrows: "to", color:"lightgray"},
+          { from: 3, to: 5, value: 1, arrows: "to", color:"lightgray"},
+          { from: 1, to: 6, value: 1, arrows: "to", color:"lightgray"},
+          { from: 6, to: 7, value: 1, arrows: "to", color:"lightgray"},
+          { from: 7, to: 8, value: 1, arrows: "to", color:"lightgray"},
+          { from: 7, to: 9, value: 1, arrows: "to", color:"lightgray"},
+          { from: 6, to: 10, value: 1, arrows: "to", color:"lightgray"},
+          { from: 6, to: 11, value: 1, arrows: "to", color:"lightgray"},
+          { from: 6, to: 12, value: 1, arrows: "to", color:"lightgray"},
+          { from: 6, to: 13, value: 1, arrows: "to", color:"lightgray"},
+          { from: 3, to: 14, value: 1, arrows: "to", color:"lightgray"},
+          { from: 14, to: 15, value: 1, arrows: "to", color:"lightgray"},
+          { from: 14, to: 16, value: 1, arrows: "to", color:"lightgray"},
+          { from: 11, to: 14, value: 1, arrows: "to", color:"lightgray"},
+          { from: 4, to: 14, value: 1, arrows: "to", color:"lightgray"},
+          { from: 15, to: 17, value: 1, arrows: "to", color:"lightgray"},
+          { from: 15, to: 18, value: 1, arrows: "to", color:"lightgray"},
+          { from: 5, to: 19, value: 1, arrows: "to", color:"lightgray"},
+          { from: 5, to: 20, value: 1, arrows: "to", color:"lightgray"},
+          { from: 2, to: 21, value: 1, arrows: "to", color:"lightgray"},
+          { from: 2, to: 22, value: 1, arrows: "to", color:"lightgray"},
+          { from: 16, to: 23, value: 1, arrows: "to", color:"lightgray"},
+          { from: 16, to: 24, value: 1, arrows: "to", color:"lightgray"},
+        ];
+
+        // Instantiate our network object.
+        var container = document.getElementById("mynetwork");
+        var data = {
+          nodes: nodes,
+          edges: edges,
+        };
+        var options = {
+          nodes: {
+            shape: "dot",
+            scaling: {
+              customScalingFunction: function (min, max, total, value) {
+                return value / total;
+              },
+              min: 5,
+              max: 150,
+            },
+          },
+        };
+        network = new vis.Network(container, data, options);
+      }
+    </script>
+  </head>
+  <body onload="draw()">
+    <div id="mynetwork"></div>
+  </body>
+</html>
