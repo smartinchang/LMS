@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Biểu mẫu động</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	</head>
+	<body lang="vi">
+		<div class="w3-container">
+			<form id="question" method="POST">
+				<h1>BIỂU MẪU ĐỘNG</h1>
+				Câu hỏi:
+				<br>
+				<input type="text" name="suggestion" style="margin-bottom:5px;margin-right:5px;width:85%;">
+				<br>
+				Các lựa chọn:
+				<br>
+				<input type="text" name="choice[]" style="margin-bottom:5px;margin-right:5px;width:85%;"><input type="radio" name="answer[]" style="margin-bottom:5px;margin-right:5px;"><input type="button" onclick="add_field()" value="+" id="add">
+				<p align="center"><button type="submit">&nbsp;Nhập&nbsp;</button></p>
+			</form>
+        <script>
+					function add_field()
+					{
+						var form = document.getElementById("question");
+						var new_field = document.createElement("input");
+						new_field.setAttribute("type", "text");
+						new_field.setAttribute("name", "choice[]");
+						new_field.setAttribute("style", "margin-bottom:5px;margin-right:5px;width:85%;");
+						form.insertBefore(new_field, document.getElementById("add"));
+						new_field = document.createElement("input");
+						new_field.setAttribute("type", "radio");
+						new_field.setAttribute("name", "answer[]");
+						new_field.setAttribute("style", "margin-bottom:5px;margin-right:5px;");
+						form.insertBefore(new_field, document.getElementById("add"));
+					}
+			</script>
+		</div>
+	</body>
+</html>
